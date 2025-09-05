@@ -1,0 +1,6 @@
+@jh_gateway_HostAddress = http://localhost:5254
+
+GET {{jh_gateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
