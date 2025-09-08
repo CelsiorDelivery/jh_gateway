@@ -28,6 +28,8 @@ await app.UseOcelot();
 
 app.UseAuthorization();
 
+app.UseJwtMiddleware(); // Use your custom middleware here
+
 app.MapControllers();
 
 app.Run();
