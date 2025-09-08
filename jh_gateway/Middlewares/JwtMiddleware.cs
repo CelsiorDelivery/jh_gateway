@@ -1,4 +1,8 @@
-﻿namespace jh_gateway.Middlewares
+﻿using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+
+namespace jh_gateway.Middlewares
 {
     public class JwtMiddleware
     {

@@ -1,3 +1,4 @@
+using jh_gateway.Middlewares;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
