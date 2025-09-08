@@ -24,12 +24,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseJwtMiddleware(); // Use your custom middleware here
+
 // Use Ocelot middleware
 await app.UseOcelot();
 
 app.UseAuthorization();
 
-app.UseJwtMiddleware(); // Use your custom middleware here
 
 app.MapControllers();
 
