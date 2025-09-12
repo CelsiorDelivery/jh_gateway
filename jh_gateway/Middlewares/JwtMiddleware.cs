@@ -87,8 +87,9 @@ namespace jh_gateway.Middlewares
                 // For example, context.Items["User"] = new User { Id = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value) };
                 await Task.CompletedTask;
             }
-            catch
+            catch (Exception ex)
             {
+                throw new Exception("Token expired/invalid.", ex);
                 // Token validation failed, do nothing or log the error
             }
         }
