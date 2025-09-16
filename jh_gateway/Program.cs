@@ -1,4 +1,5 @@
 using jh_gateway.Middlewares;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -15,6 +16,20 @@ builder.Services.AddSwaggerGen();
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 builder.Services.AddOcelot();
 
+const string policyName = "JS_POC_CORS";
+
+builder.Services.AddCors(delegate (CorsOptions options) {
+    options.AddPolicy(policyName, delegate (CorsPolicyBuilder builder) {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithExposedHeaders("ContentDisposition")
+            .WithExposedHeaders("Authorization")
+            .SetPreflightMaxAge(TimeSpan.FromMinutes(10.0));
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,6 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(policyName);
 app.UseJwtMiddleware(); // Use your custom middleware here
 
 // Use Ocelot middleware
