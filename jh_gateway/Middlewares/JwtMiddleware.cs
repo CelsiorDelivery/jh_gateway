@@ -52,7 +52,7 @@ namespace jh_gateway.Middlewares
         private bool ValidateRoute(HttpContext context)
         {
             if (context.Request.Path.ToString().ToLower().Contains("/login") ||
-                context.Request.Path.ToString().ToLower().Contains("/registration"))
+                context.Request.Path.ToString().ToLower().Contains("/register"))
             {
                 return true;
             }
